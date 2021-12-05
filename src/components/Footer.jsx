@@ -3,7 +3,8 @@ import { Container, Divider, Image, Grid, List, Header, Segment } from "semantic
 
 
 function Footer() {
-    return (<Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }}>
+    return ( <div style = {{marginBottom: 0}}>
+        <Segment inverted vertical style={{ margin: '5em 0em 0em', padding: '5em 0em' }} attached='bottom'>
     <Container textAlign='center'>
       <Grid divided inverted stackable>
         <Grid.Column width={3}>
@@ -58,7 +59,8 @@ function Footer() {
         </List.Item>
       </List>
     </Container>
-  </Segment>);
+  </Segment>
+    </div>);
 }
 
 export default Footer;
