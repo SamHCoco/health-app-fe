@@ -19,7 +19,7 @@ function RegistrationForm() {
     createUser();
   };
   
-  const createUser = async () => {
+  const createUser = async (props) => {
     const payload = user;
     console.log("User to be created: " + payload);
     const {data : createdUser} = await axios.post(url, payload);
@@ -32,24 +32,24 @@ function RegistrationForm() {
     setUser({...user, [e.target.name] : e.target.value});
   }
 
-  return (<Container>
+  return (<div>
+    <Container style={{width: 400}}>
             <Form handleSubmit={handleSubmit}>
-              <Form.Group widths='equal'>
-                  <Form.Input fluid label='First name' placeholder='First name' value={user.firstName} name='firstName' onChange={handleChange} />
-                  <Form.Input fluid label='Middle names' placeholder='(Optional)' name='middleName' onChange={handleChange}/>
-                  <Form.Input fluid label='Surname' placeholder='Surname' value={user.lastName} name='lastName' onChange={handleChange} />
-              </Form.Group>
+            <Form.Input fluid label='First name' placeholder='Required' value={user.firstName} name='firstName' onChange={handleChange} />
+            <Form.Input fluid label='Middle names' placeholder='Optional' name='middleName' onChange={handleChange}/>
+            <Form.Input fluid label='Surname' placeholder='Required' value={user.lastName} name='lastName' onChange={handleChange} />
               <Form.Field>
                   <label>Username</label>
-                  <input placeholder='Email' type='email' value={user.email} name='email' onChange={handleChange} />
+                  <input placeholder='Email (Required)' type='email' value={user.email} name='email' onChange={handleChange} />
               </Form.Field>
               <Form.Field>
                   <label>Password</label>
-                  <input placeholder='Password' type='password' value={user.password} name='password' onChange={handleChange} />
+                  <input placeholder='Required' type='password' value={user.password} name='password' onChange={handleChange} />
               </Form.Field>
               <Button onClick={handleSubmit} type='submit'>Sign up</Button>
           </Form>
-        </Container>);
+        </Container>
+  </div>);
 }
 
 
