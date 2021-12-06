@@ -1,0 +1,5 @@
+{
+    "keycloakBaseUrl" : "http://localhost:8080",
+    "keycloakRealm": "master",
+    "keycloakClient": "health-app"
+}

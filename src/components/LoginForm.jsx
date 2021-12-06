@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Form, Container } from 'semantic-ui-react';
+import {authenticate} from '../service/authenticationService';
 
 
 function LoginForm() {
@@ -10,7 +11,7 @@ function LoginForm() {
       
       const handleSubmit = (e) => {
         e.preventDefault();
-        
+        authenticate(userLogin.email, userLogin.password);
       };
 
       const handleChange = (e) => {
