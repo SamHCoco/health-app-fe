@@ -3,7 +3,7 @@ import { Button, Form, Container } from 'semantic-ui-react';
 import {authenticate} from '../service/authenticationService';
 
 
-function LoginForm() {
+function LoginForm(props) {
     const [userLogin, setUserLogin] = useState({
         email: '',
         password: ''
@@ -12,6 +12,7 @@ function LoginForm() {
       const handleSubmit = (e) => {
         e.preventDefault();
         authenticate(userLogin.email, userLogin.password);
+        props.history.push("/store");
       };
 
       const handleChange = (e) => {

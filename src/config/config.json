@@ -1,5 +1,6 @@
 {
     "keycloakBaseUrl" : "http://localhost:8080",
     "keycloakRealm": "master",
-    "keycloakClient": "health-app"
+    "keycloakClient": "health-app",
+    "authTokenUrl": "http://localhost:8899/api/v1/user/token"
 }
