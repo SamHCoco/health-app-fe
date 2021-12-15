@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Form, Container } from 'semantic-ui-react';
-import {authenticate} from '../service/authenticationService';
+import {authenticate} from '../service/authService';
 
 
 function LoginForm(props) {
@@ -9,17 +9,21 @@ function LoginForm(props) {
         password: ''
       });
       
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        authenticate(userLogin.email, userLogin.password);
-        props.history.push("/store");
-      };
-
-      const handleChange = (e) => {
-        const name = e.target.name;
-        console.log("Event is " + e.target.name) // todo - remove
-        setUserLogin({...userLogin, [e.target.name] : e.target.value});
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      try {
+        authenticate(userLogin.email, userLogin.password, '/store');
+      } catch (error) {
+        console.log("Failed to authenticate username '" + userLogin.email + "':");
+        console.log(error);
       }
+    };
+
+    const handleChange = (e) => {
+      const name = e.target.name;
+      console.log("Event is " + e.target.name) // todo - remove
+      setUserLogin({...userLogin, [e.target.name] : e.target.value});
+    }
 
     return (<div>
                 <Container style={{width: 400}}>

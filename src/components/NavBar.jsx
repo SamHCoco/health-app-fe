@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Icon, Image, Menu, Button } from "semantic-ui-react";
+import { Image, Menu, Button } from "semantic-ui-react";
 
-function NavBar (props) {
+function NavBar ({user}, {authenticated}) {
     
     return (<div style={{marginBottom: 100}}>
                 <Menu fixed='top'>
@@ -10,16 +10,49 @@ function NavBar (props) {
                             Ascelpius
                         </Menu.Item>
 
-                        <Menu.Menu position='right'>
-                            <Menu.Item >
-                                <Button>Login</Button>
-                            </Menu.Item>
-                            <Menu.Item >
-                                <Button>Sign Up</Button>
-                            </Menu.Item>
-                        </Menu.Menu>
+                        { !user && <Menu.Menu position='right'>
+                                        <Menu.Item >
+                                            <Button>Login</Button>
+                                        </Menu.Item>
+                                        <Menu.Item >
+                                            <Button>Sign Up</Button>
+                                        </Menu.Item>
+                                    </Menu.Menu>
+                        }
+                        { user && <Menu.Menu position='right'>
+                                                            <Menu.Item >
+                                                                <Button>Sign out</Button>
+                                                            </Menu.Item>
+                                                        </Menu.Menu>
+                        }
                 </Menu>
             </div>);
+
+            
+}
+
+
+export function renderNavOption(user, authenticated) {
+     if (user && authenticated) {
+        return (
+            <Menu.Menu position='right'>
+                <Menu.Item >
+                    <Button>Sign out</Button>
+                </Menu.Item>
+            </Menu.Menu>
+        );
+     } else {
+        return (
+            <Menu.Menu position='right'>
+            <Menu.Item >
+                <Button>Login</Button>
+            </Menu.Item>
+            <Menu.Item >
+                <Button>Sign Up</Button>
+            </Menu.Item>
+        </Menu.Menu>
+        );
+     }           
 }
 
 export default NavBar;
