@@ -1,7 +1,10 @@
 import React from 'react';
 import { Image, Menu, Button } from "semantic-ui-react";
+import { useHistory} from 'react-router-dom';
 
 function NavBar ({user}) {
+    const history = useHistory();
+
     
     return (<div style={{marginBottom: 100}}>
                 <Menu fixed='top'>
@@ -12,18 +15,18 @@ function NavBar ({user}) {
 
                         { !user && <Menu.Menu position='right'>
                                         <Menu.Item >
-                                            <Button>Login</Button>
+                                            <Button onClick={() => history.push('/login')}>Sign in</Button>
                                         </Menu.Item>
                                         <Menu.Item >
-                                            <Button>Sign Up</Button>
+                                            <Button onClick={() => history.push('/sign-up')}>Register</Button>
                                         </Menu.Item>
                                     </Menu.Menu>
                         }
                         { user && <Menu.Menu position='right'>
-                                                            <Menu.Item >
-                                                                <Button>Sign out</Button>
-                                                            </Menu.Item>
-                                                        </Menu.Menu>
+                                        <Menu.Item >
+                                            <Button>Sign out</Button>
+                                        </Menu.Item>
+                                    </Menu.Menu>
                         }
                 </Menu>
             </div>);
@@ -32,7 +35,7 @@ function NavBar ({user}) {
 }
 
 
-export function renderNavOption(user, authenticated) {
+function renderNavOption(user, authenticated) {
      if (user && authenticated) {
         return (
             <Menu.Menu position='right'>

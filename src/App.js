@@ -5,12 +5,12 @@ import {useState, useEffect} from 'react';
 
 import config from './config/config.json';
 
-import RegistrationForm from './components/Registration';
+import RegistrationForm from './components/RegistrationForm';
 import RegistrationSuccess from './components/RegistrationSuccess';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import LoginForm from './components/LoginForm';
-import ProductList from './components/ProductList';
+import ItemList from './components/ItemList';
 import axios from 'axios';
 
 
@@ -53,7 +53,7 @@ function App() {
         </Route>
         <Route path="/sign-up" exact component={RegistrationForm}/>
         <Route path="/registration-success" exact component={RegistrationSuccess} />
-        <Route path="/store" exact component={ProductList} />
+        <Route path="/store" exact component={ItemList} />
         <Footer></Footer>
     </div>
   );
