@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Menu, Button } from "semantic-ui-react";
 
-function NavBar ({user}, {authenticated}) {
+function NavBar ({user}) {
     
     return (<div style={{marginBottom: 100}}>
                 <Menu fixed='top'>

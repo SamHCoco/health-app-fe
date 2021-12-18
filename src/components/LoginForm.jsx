@@ -1,9 +1,20 @@
 import React, {useState} from 'react';
 import { Button, Form, Container } from 'semantic-ui-react';
+import { useHistory} from 'react-router-dom';
+
 import {authenticate} from '../service/authService';
 
 
-function LoginForm(props) {
+function LoginForm({user}) {
+
+    const history = useHistory();
+   
+    if (user) {
+      history.push('/store');
+    } else {
+      console.log('Login user is null');
+    }
+
     const [userLogin, setUserLogin] = useState({
         email: '',
         password: ''
