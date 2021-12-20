@@ -11,7 +11,7 @@ function LoginForm({user}) {
     if (user) {
       history.push('/store');
     } else {
-      console.log('Login user is null');
+      console.log('Login user is null'); // todo - remove
     }
 
     const [userLogin, setUserLogin] = useState({

@@ -22,10 +22,16 @@ function App() {
       const accessToken = localStorage.getItem("accessToken"); 
       
       async function checkAuth(token) {
-        const {data: response} = await axios.post(config.authTokenInfoUrl, {'access_token': token});
-        const {active} = response;
-        console.log("isAuthenticated: " + active);
-        return active;
+        try {
+          const {data: response} = await axios.post(config.authTokenInfoUrl, {'access_token': token});
+          const {active} = response;
+          console.log("isAuthenticated: " + active);
+          return active;
+        } catch (exception) {
+          console.log('Failed to check user auth token: ');
+          console.log(exception);
+          return false;
+        }
       }
 
       if (accessToken) {
