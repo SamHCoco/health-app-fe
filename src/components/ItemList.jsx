@@ -1,10 +1,14 @@
-import { Container } from "semantic-ui-react";
+import { Container, Segment } from "semantic-ui-react";
+
+import Item from '../components/Item';
 
 function ItemList() {
     return ( 
-        <Container>
-            <b>Store</b>
-        </Container>
+        <Segment>
+            <Container>
+                <Item></Item>
+            </Container>
+        </Segment>
      );
 }
 
