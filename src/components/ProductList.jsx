@@ -1,5 +1,5 @@
-import { Container, Segment } from "semantic-ui-react";
-import { React, useState, useEffect } from "react";
+import { Container, Segment, Card } from "semantic-ui-react";
+import { React, useState, useEffect, Text } from "react";
 
 import Product from "../components/Product";
 import httpService from "../service/httpService";
@@ -7,6 +7,7 @@ import config from "../config/config.json";
 
 function ProductList() {
   const [products, setProducts] = useState([{}]);
+  const [test, setTest] = useState(['first', 'second']);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -14,23 +15,23 @@ function ProductList() {
         config.storeServiceUrl + "/product/all"
       );
       console.log("Returned products: ");
-      console.log([productData]); // todo - remove
-      setProducts([productData]);
+      setProducts(productData);
     }
 
     fetchProducts();
   }, []);
 
-  const productList = products.map((product) => 
-    <Product
-      key={product.id} 
-      name={product.name}
-      manufacturer={product.manufacturer}></Product>
-  );
-
   return (
     <Segment>
-      <Container>{productList}</Container>
+      <Container>
+        <Card.Group itemsPerRow={5}>
+            {products.map(({id, name, manufacturer, price}) => <Product
+                                      key={id} 
+                                      name={name}
+                                      price={price}
+                                      manufacturer={manufacturer} />)}
+        </Card.Group>
+    </Container>
     </Segment>
   );
 }

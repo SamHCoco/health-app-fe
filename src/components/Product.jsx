@@ -9,7 +9,7 @@ function Product(props) {
       <Card.Content>
         <Card.Header>{props.name}</Card.Header>
         <Divider />
-        <Card.Header>{props.price}</Card.Header>
+        <Card.Header>{formatPrice(props.price)}</Card.Header>
         <Card.Meta>{props.manufacturer}</Card.Meta>
         <Card.Description>
           <Accordion>
@@ -30,6 +30,13 @@ function Product(props) {
       </Card.Content>
     </Card>
   );
+}
+
+function formatPrice(price) {
+  return new Intl.NumberFormat('en-GB', {
+    style: 'currency',
+    currency: 'GBP',
+  }).format(price);
 }
 
 export default Product;
