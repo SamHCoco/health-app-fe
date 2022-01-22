@@ -12,20 +12,7 @@ function Product(props) {
         <Card.Header>{formatPrice(props.price)}</Card.Header>
         <Card.Meta>{props.manufacturer}</Card.Meta>
         <Card.Description>
-          <Accordion>
-            <Accordion.Title>
-              <Icon name="dropdown" />
-              Information
-            </Accordion.Title>
-            <Accordion.Content>
-              <span>
-                For the relief of mild to moderate pain, influenza, colds and
-                feverishness.
-                <br />
-                Suitable for: Adults &amp; children aged 6 years &amp; over.
-              </span>
-            </Accordion.Content>
-          </Accordion>
+      
         </Card.Description>
       </Card.Content>
     </Card>
