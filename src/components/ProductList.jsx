@@ -1,4 +1,4 @@
-import { Container, Segment, Card, Dropdown } from "semantic-ui-react";
+import { Container, Segment, Card, Dropdown, Pagination } from "semantic-ui-react";
 import { React, useState, useEffect} from "react";
 
 import Product from "../components/Product";
@@ -8,6 +8,7 @@ import DropdownMenu from './DropdownMenu';
 
 function ProductList() {
   const [products, setProducts] = useState([{}]);
+  const [activePage, setActivePage] = useState(1);
   
   useEffect(() => {
     async function fetchProducts() {
@@ -26,9 +27,9 @@ function ProductList() {
         {key: 1, text: 'Price: highest to lowest', value: 'Price: highest to lowest'}
       ];
 
-  function handleClick(e, {key}) {
-    
-  }    
+  function handlePaginationChange(e, { activePage }) {
+    setActivePage(activePage);
+  }
   
   return (
     <Segment>
@@ -47,6 +48,11 @@ function ProductList() {
                                           price={price}
                                           manufacturer={manufacturer} />)}
             </Card.Group>
+            <Pagination
+            activePage={activePage}
+            onPageChange={handlePaginationChange}
+            totalPages={5}
+          />
         </Container>
     </Segment>
   );
