@@ -23,33 +23,42 @@ function ProductList() {
       setTotalPages(response.totalPages);
     }
     fetchProducts();
-  },[apiUrl, pageSize]);
+  },[apiUrl]);
 
 
   const pageSizeOptions = [
-        {key: 0, text: 'View 12', value: 12},
-        {key: 1, text: 'View 24', value: 24}
+        {key: 0, text: 'View 12', value: '12'},
+        {key: 1, text: 'View 24', value: '24'}
       ];
 
   function onPageChange(e, { activePage }) {
     setActivePage(activePage);
-    setApiUrl(config.storeServiceUrl + '/product/paged/all?page=' + activePage.toString() + '&size=' + pageSize.toString);
+    setApiUrl(config.storeServiceUrl + '/product/paged/all?page=' + activePage.toString() + '&size=' + pageSize.toString());
+  }
+
+  function onPageSizeChange(e, { value }) {
+    setPageSize(value);
+    setActivePage(1);
+    setApiUrl(config.storeServiceUrl + '/product/paged/all?page=1&size=' + value);
+    console.log("Page size changed to " + value);
   }
   
   return (
     <Grid centered>
       
       <Grid.Row>
-          <div>
+          {/* <div>
             <Search placeholder='Search' />
-          </div>
+          </div> */}
 
-          <Dropdown
-            selection
-            options={pageSizeOptions} 
-            onChange={(e, { value }) => setPageSize({ value })}
-            defaultValue='View 12'
-          />
+          <div style={{"margin-left": "0px"}}>
+            <Dropdown
+              selection
+              options={pageSizeOptions}  
+              onChange={onPageSizeChange}
+              placeholder={'View 12'}
+            />
+          </div>
 
       </Grid.Row>
         
