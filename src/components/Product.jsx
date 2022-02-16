@@ -11,9 +11,9 @@ function Product(props) {
         <Divider />
         <Card.Header>{formatPrice(props.price)}</Card.Header>
         <Card.Meta>{props.manufacturer}</Card.Meta>
-        <Card.Description>
+        {/* <Card.Description>
       
-        </Card.Description>
+        </Card.Description> */}
       </Card.Content>
     </Card>
   );
