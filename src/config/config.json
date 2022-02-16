@@ -3,5 +3,7 @@
     "keycloakRealm": "master",
     "keycloakClient": "health-app",
     "authTokenUrl": "http://localhost:8899/api/v1/user/token",
-    "authTokenInfoUrl": "http://localhost:8899/api/v1/user/token-info"
+    "authTokenInfoUrl": "http://localhost:8899/api/v1/user/token-info",
+
+    "storeServiceUrl": "http://localhost:8763/store-service/api/v1"
 }
