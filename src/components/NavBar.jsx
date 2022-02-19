@@ -1,10 +1,11 @@
 import React from 'react';
 import { Image, Menu, Button } from "semantic-ui-react";
 import { useHistory} from 'react-router-dom';
+import { useKeycloak } from '@react-keycloak/web';
 
-function NavBar ({user}) {
+function NavBar () {
     const history = useHistory();
-
+    const keycloak = useKeycloak().keycloak;
     
     return (<div style={{marginBottom: 100}}>
                 <Menu fixed='top'>
@@ -13,18 +14,18 @@ function NavBar ({user}) {
                             Ascelpius
                         </Menu.Item>
 
-                        { !user && <Menu.Menu position='right'>
+                        { !keycloak.authenticated && <Menu.Menu position='right'>
                                         <Menu.Item >
-                                            <Button onClick={() => history.push('/login')}>Sign in</Button>
+                                            <Button onClick={() => keycloak.login()}>Login</Button>
                                         </Menu.Item>
                                         <Menu.Item >
-                                            <Button onClick={() => history.push('/sign-up')}>Register</Button>
+                                            <Button onClick={() => history.push('/sign-up')}>Sign Up</Button>
                                         </Menu.Item>
                                     </Menu.Menu>
                         }
-                        { user && <Menu.Menu position='right'>
+                        { keycloak.authenticated && <Menu.Menu position='right'>
                                         <Menu.Item >
-                                            <Button>Sign out</Button>
+                                            <Button onClick={() => keycloak.logout()}>Sign out</Button>
                                         </Menu.Item>
                                     </Menu.Menu>
                         }
@@ -32,30 +33,6 @@ function NavBar ({user}) {
             </div>);
 
             
-}
-
-
-function renderNavOption(user, authenticated) {
-     if (user && authenticated) {
-        return (
-            <Menu.Menu position='right'>
-                <Menu.Item >
-                    <Button>Sign out</Button>
-                </Menu.Item>
-            </Menu.Menu>
-        );
-     } else {
-        return (
-            <Menu.Menu position='right'>
-            <Menu.Item >
-                <Button>Login</Button>
-            </Menu.Item>
-            <Menu.Item >
-                <Button>Sign Up</Button>
-            </Menu.Item>
-        </Menu.Menu>
-        );
-     }           
 }
 
 export default NavBar;
