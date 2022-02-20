@@ -16,13 +16,14 @@ import ProductList from "./components/ProductList";
 import ProtectedRoute from './components/ProtectedRoute';
 import axios from "axios";
 import Loading from "./components/Loading";
+import AboutPage from "./pages/about";
 
 function App() {
   return (
     <div>
         <ReactKeycloakProvider 
             authClient={keycloak} 
-            initOptions= {{'onLoad': 'login-required'}}
+            initOptions= {{'onLoad': 'check-sso'}}
             LoadingComponent={Loading}>
             <NavBar />
                 <Route path="/login" exact>
@@ -30,7 +31,8 @@ function App() {
                 </Route>
                 
                 <Route path="/sign-up" exact component={RegistrationForm} />           
-                <Route path="/registration-success" exact component={RegistrationSuccess} />
+                {/* <Route path="/registration-success" exact component={RegistrationSuccess} /> */}
+                <Route path="/about" exact component={AboutPage}></Route>
                 
                 <Route path="/store" exact > 
                   <ProtectedRoute> <ProductList /> </ProtectedRoute>
