@@ -1,6 +1,8 @@
 import { Container, Segment, Card, Dropdown, Pagination, Grid, Search } from "semantic-ui-react";
 import { React, useState, useEffect} from "react";
 
+import { useKeycloak } from '@react-keycloak/web';
+
 import Product from "../components/Product";
 import httpService from "../service/httpService";
 import config from '../config/config.json';
@@ -10,10 +12,14 @@ function ProductList() {
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [pageSize, setPageSize] = useState(12);
+
+  const { keycloak, initialized } = useKeycloak();
   
   const [apiUrl, setApiUrl] = useState(config.storeServiceUrl + '/product/paged/all?page=' + activePage + '&size=' + pageSize.toString());
 
   useEffect(() => {
+    keycloak.init({onLoad: 'login-required'}); // todo - fix
+
     async function fetchProducts() {
       const { data: response } = await httpService.get(apiUrl);
       console.log('Returned response: ');
